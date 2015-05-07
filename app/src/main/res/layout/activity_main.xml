@@ -62,9 +62,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:layout_above="@+id/editText"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="35dp"
         android:layout_alignLeft="@+id/textView"
         android:src="@drawable/gullogo"
+        android:layout_marginRight="60dp"
+
 
         />
 
