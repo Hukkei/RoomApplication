@@ -39,7 +39,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:id="@+id/imageView4"
-        android:src="@drawable/gulogo"
+        android:src="@drawable/gullogo"
         android:layout_alignParentBottom="true"
          />
 
