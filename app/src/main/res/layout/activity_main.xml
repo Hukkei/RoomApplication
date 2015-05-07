@@ -64,6 +64,7 @@
         android:layout_above="@+id/editText"
         android:layout_marginBottom="20dp"
         android:layout_alignLeft="@+id/textView"
+        android:src="@drawable/gulogo"
 
         />
 
