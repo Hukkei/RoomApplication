@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">RoomApplication</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="gr_patricia">GRUPPRUM PATRICIA</string>
+    <string name="bokning">BOKNING</string>
+    <string name="info">INFORMATION</string>
+    <string name="anv">Användarnamn</string>
+    <string name="passw">Lösenord</string>
+    <string name="login_btn">Logga in</string>
+    <string name="action_settings">Inställningar</string>
+    <string name="avsluta_inst_btn">Avsluta</string>
+
+
 </resources>

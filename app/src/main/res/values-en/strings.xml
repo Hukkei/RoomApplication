@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">RoomApplication</string>
+
+    <string name="gr_patricia">Study Rooms PATRICIA</string>
+    <string name="bokning">BOOKING</string>
+    <string name="info">INFORMATION</string>
+    <string name="anv">Username</string>
+    <string name="passw">Password</string>
+    <string name="login_btn">Sign in</string>
+    <string name="action_settings">Settings</string>
+    <string name="avsluta_inst_btn">Exit</string>
+</resources>

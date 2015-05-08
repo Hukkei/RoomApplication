@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Username"
+        android:text="@string/anv"
         android:id="@+id/textView"
         android:layout_alignLeft="@+id/editText"
         android:layout_marginTop="160dp"
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Password"
+        android:text="@string/passw"
         android:id="@+id/textView2"
         android:layout_below="@+id/editText"
         android:layout_alignLeft="@+id/editText"
@@ -49,13 +49,15 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/button"
+        android:text="@string/login_btn"
+        android:id="@+id/button_login"
         android:background="@drawable/custom_button"
         android:textColor="@color/white"
         android:layout_below="@+id/editText2"
         android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:layout_alignStart="@+id/editText2"
+        android:onClick="onLoggaIn"
+        />
 
     <ImageView
         android:layout_width="wrap_content"
