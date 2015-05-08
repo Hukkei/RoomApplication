@@ -1,9 +1,11 @@
 package com.example.hukkei.roomapplication;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -31,8 +33,21 @@ public class MainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+
+        }else if (id == R.id.avslutaApp){ //avsluta appen
+            finish();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onLoggaIn(View view) {//logga in knapp till startskärm detta tas bort när databas är uppe
+
+        Intent getMainScreenIntent = new Intent (this, mainscreen.class);
+
+        startActivity(getMainScreenIntent);
+
+
     }
 }
