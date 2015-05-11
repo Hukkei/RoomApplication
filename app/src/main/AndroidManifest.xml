@@ -18,7 +18,12 @@
         </activity>
 
         <activity android:name=".mainscreen"
-            android:label="Huvudsida"
+            android:label="@string/Huvudsida"
+            android:theme="@style/AppTheme"
+
+            />
+        <activity android:name=".bookScreen"
+
             android:theme="@style/AppTheme"
 
             />

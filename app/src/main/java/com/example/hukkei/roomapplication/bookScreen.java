@@ -7,13 +7,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class mainscreen extends ActionBarActivity {
+public class bookScreen extends ActionBarActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mainscreen);
+        setContentView(R.layout.book_screen);
     }
 
     @Override
@@ -42,11 +42,4 @@ public class mainscreen extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    public void onBokning(View view) {
-        Intent getBookScreenIntent = new Intent (this, bookScreen.class);
-
-        startActivity(getBookScreenIntent);
-
-    }
 }
