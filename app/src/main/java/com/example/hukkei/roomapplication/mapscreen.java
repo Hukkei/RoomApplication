@@ -45,9 +45,9 @@ public class mapscreen extends ActionBarActivity {
 
 
     public void onMapscreen(View view) {
-        Intent getBookScreenIntent = new Intent (this, mapscreen.class);
+        Intent getMapScreenIntent = new Intent (this, mapscreen.class);
 
-        startActivity(getBookScreenIntent);
+        startActivity(getMapScreenIntent);
 
     }
 }
