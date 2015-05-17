@@ -10,6 +10,9 @@
     <string name="action_settings">Inställningar</string>
     <string name="avsluta_inst_btn">Avsluta</string>
     <string name="Huvudsida">Huvudsida</string>
+    <string name="cancel">Avbryt</string>
+    <string name="ok">Ok</string>
+    <string name="v_info_text">Viktig information!</string>
 
 
 </resources>

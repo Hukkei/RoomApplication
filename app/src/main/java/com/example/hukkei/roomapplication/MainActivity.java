@@ -42,7 +42,7 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onLoggaIn(View view) {//logga in knapp till startskärm detta tas bort när databas är uppe
+    public void onLoggaIn(View view) {//logga in knapp till startskï¿½rm detta tas bort nï¿½r databas ï¿½r uppe
 
         Intent getMainScreenIntent = new Intent (this, mainscreen.class);
 
