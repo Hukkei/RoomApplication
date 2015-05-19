@@ -2,4 +2,207 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/PatriciaText"
+        android:text="Grupprum Patricia"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="19dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KERMIT"
+        android:id="@+id/kermit"
+        android:background="@drawable/button_yellow"
+        android:textColor="@color/black"
+        android:layout_marginBottom="73dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/erna"
+        android:layout_alignStart="@+id/erna" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ERNA"
+        android:id="@+id/erna"
+        android:background="@drawable/button_yellow"
+        android:textColor="@color/black"
+        android:layout_marginBottom="125dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DBASE"
+        android:id="@+id/dbase"
+        android:background="@drawable/button_yellow"
+        android:textColor="@color/black"
+        android:layout_marginBottom="175dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CRAY"
+        android:id="@+id/cray"
+        android:background="@drawable/button_yellow"
+        android:textColor="@color/black"
+        android:layout_marginBottom="293dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PDP"
+        android:id="@+id/pdp"
+        android:background="@drawable/button_yellow"
+        android:textColor="@color/black"
+        android:layout_marginBottom="345dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VAX"
+        android:id="@+id/vax"
+        android:background="@drawable/button_yellow"
+        android:textColor="@color/black"
+        android:layout_marginBottom="397dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:text="USB"
+        android:id="@+id/usb"
+        android:background="@drawable/button_yellow"
+        android:textColor="@color/black"
+        android:layout_above="@+id/cray"
+        android:layout_marginTop="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ZELDA"
+        android:id="@+id/zelda"
+        android:background="@drawable/button_yellow"
+        android:textColor="@color/black"
+        android:layout_above="@+id/kermit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TETRIS"
+        android:id="@+id/tetris"
+        android:background="@drawable/button_yellow"
+        android:textColor="@color/black"
+        android:layout_below="@+id/zelda"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DONKEY"
+        android:id="@+id/donkey"
+        android:background="@drawable/button_yellow"
+        android:textColor="@color/black"
+        android:layout_above="@+id/zelda"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/zelda"
+        android:layout_alignEnd="@+id/zelda" />
+
+    <Button
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/gulruta"
+        android:background="@drawable/button_yellow"
+        android:textColor="@color/black"
+        android:layout_under="@+id/zelda"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <Button
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/rodruta"
+        android:background="@drawable/button_red"
+        android:textColor="@color/black"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText3"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/gulruta"
+        android:layout_toLeftOf="@+id/rodruta"
+        android:layout_toStartOf="@+id/rodruta"
+        android:text="Ledigt" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText4"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/rodruta"
+        android:layout_toEndOf="@+id/rodruta"
+        android:text="Upptaget" />
+
+    <Button
+        android:layout_width="123dp"
+        android:layout_height="200dp"
+        android:text="Torg Orange"
+        android:id="@+id/torgOrange"
+        android:layout_alignBottom="@+id/kermit"
+        android:layout_toRightOf="@+id/torgBlue"
+        android:layout_toEndOf="@+id/torgBlue" />
+
+    <Button
+        android:layout_width="123dp"
+        android:layout_height="200dp"
+        android:text="Torg Grön"
+        android:id="@+id/torgGreen"
+        android:layout_above="@+id/torgOrange"
+        android:layout_toRightOf="@+id/torgBlue"
+        android:layout_toEndOf="@+id/torgBlue" />
+
+    <Button
+        android:layout_width="123dp"
+        android:layout_height="200dp"
+        android:text="Torg Blå"
+        android:id="@+id/torgBlue"
+        android:layout_below="@+id/torgGreen"
+        android:layout_toRightOf="@+id/zelda"
+        android:layout_toEndOf="@+id/zelda" />
+
+
 </RelativeLayout>

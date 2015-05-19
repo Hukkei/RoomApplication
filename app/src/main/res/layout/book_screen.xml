@@ -21,6 +21,7 @@
         android:layout_below="@+id/PatriciaText"
         android:layout_marginTop="118dp"
         android:background="@drawable/boka_btn"
+        android:onClick="onMapscreen"
         />
 
     <ImageButton
@@ -44,6 +45,12 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="0dp"
         android:background="@drawable/bokhis_btn"
+        />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@drawable/back_button"
         />
 
 
