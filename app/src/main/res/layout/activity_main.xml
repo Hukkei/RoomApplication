@@ -68,8 +68,6 @@
         android:layout_alignLeft="@+id/textView"
         android:src="@drawable/gullogo"
         android:layout_marginRight="60dp"
-
-
         />
 
 </RelativeLayout>

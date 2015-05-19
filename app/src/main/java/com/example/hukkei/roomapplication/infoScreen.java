@@ -1,20 +1,18 @@
 package com.example.hukkei.roomapplication;
 
-import android.app.FragmentManager;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class mainscreen extends ActionBarActivity {
-
+public class infoScreen extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mainscreen);
+        setContentView(R.layout.info_screen);
     }
 
     @Override
@@ -35,7 +33,7 @@ public class mainscreen extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
 
-        }else if (id == R.id.avslutaApp){ //avsluta appen
+        } else if (id == R.id.avslutaApp) { //avsluta appen
             finish();
             return true;
         }
@@ -43,18 +41,10 @@ public class mainscreen extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void meddelanderuta_btn(View view) {
+        alertDialog aDialog = new alertDialog();
+        aDialog.show(getFragmentManager(), "alert Dialog");
 
-    public void onBokning(View view) {
-        Intent getBookScreenIntent = new Intent (this, bookScreen.class);
-
-        startActivity(getBookScreenIntent);
-
-    }
-
-    public void inforuta(View view) {
-        Intent getInfoScreenIntent = new Intent(this, infoScreen.class);
-
-        startActivity(getInfoScreenIntent);
 
     }
 }

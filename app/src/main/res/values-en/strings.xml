@@ -10,4 +10,7 @@
     <string name="action_settings">Settings</string>
     <string name="avsluta_inst_btn">Exit</string>
     <string name="Huvudsida">Main Page</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="v_info_text">Important information!</string>
 </resources>
