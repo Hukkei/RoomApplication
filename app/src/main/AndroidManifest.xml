@@ -27,6 +27,10 @@
         <activity android:name=".infoScreen"
             android:theme="@style/AppTheme"
             />
+        <activity android:name=".bookScreenBoka"
+            android:theme="@style/AppTheme"
+            android:label="Boknings sida"
+            />
 
 
 

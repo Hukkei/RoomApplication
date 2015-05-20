@@ -141,7 +141,6 @@
         android:id="@+id/gulruta"
         android:background="@drawable/button_yellow"
         android:textColor="@color/black"
-        android:layout_under="@+id/zelda"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

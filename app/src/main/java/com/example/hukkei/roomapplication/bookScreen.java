@@ -42,4 +42,11 @@ public class bookScreen extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void bokaSida(View view) {
+        Intent getBookScreenBokaIntent = new Intent(this, bookScreenBoka.class);
+
+        startActivity(getBookScreenBokaIntent);
+
+    }
+
 }

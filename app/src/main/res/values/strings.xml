@@ -13,6 +13,6 @@
     <string name="cancel">Avbryt</string>
     <string name="ok">Ok</string>
     <string name="v_info_text">Viktig information!</string>
-
+    <string name="sokBokning_text">Sök lediga rum</string>
 
 </resources>
