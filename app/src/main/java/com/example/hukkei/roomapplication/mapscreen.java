@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +26,9 @@ import java.util.HashMap;
 
 
 public class mapscreen extends ActionBarActivity {
+
+
+
     private ProgressDialog pDialog;
     //testing from a real server:
     private static final String ROOM_STATUS_URL = "http://roomappgu.bitnamiapp.com/roomapp/roomstatus.php";
@@ -159,11 +163,13 @@ public class mapscreen extends ActionBarActivity {
 
         for(int i=0; i<mRoomList.size(); i++){
             if(Integer.parseInt(mRoomList.get(i).get(TAG_STATUS)) == 1) {
-                theRooms.get(Integer.parseInt(mRoomList.get(i).get(TAG_ROOM_ID)) - 1).setBackgroundResource(R.color.red);
+                theRooms.get(Integer.parseInt(mRoomList.get(i).get(TAG_ROOM_ID)) - 1).setBackgroundResource(R.drawable.button_blue);
+                theRooms.get(Integer.parseInt(mRoomList.get(i).get(TAG_ROOM_ID)) - 1).setTextColor(getResources().getColor(R.color.white));
+
 
             } else {
-                theRooms.get(Integer.parseInt(mRoomList.get(i).get(TAG_ROOM_ID)) - 1).setBackgroundResource(R.color.yellow);
-
+                theRooms.get(Integer.parseInt(mRoomList.get(i).get(TAG_ROOM_ID)) - 1).setBackgroundResource(R.drawable.button_white);
+                theRooms.get(Integer.parseInt(mRoomList.get(i).get(TAG_ROOM_ID)) - 1).setTextColor(getResources().getColor(R.color.black));
             }
         }
 
