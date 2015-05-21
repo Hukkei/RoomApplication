@@ -49,4 +49,11 @@ public class bookScreen extends ActionBarActivity {
 
     }
 
+    public void onMapscreen(View view) {
+        Intent getMapScreenIntent = new Intent (this, mapscreen.class);
+
+        startActivity(getMapScreenIntent);
+
+    }
+
 }

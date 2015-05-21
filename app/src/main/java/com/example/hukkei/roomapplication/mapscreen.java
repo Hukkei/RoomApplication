@@ -1,16 +1,45 @@
 package com.example.hukkei.roomapplication;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by simon on 2015-05-13.
  */
+
+
+
 public class mapscreen extends ActionBarActivity {
+    private ProgressDialog pDialog;
+    //testing from a real server:
+    private static final String ROOM_STATUS_URL = "http://roomappgu.bitnamiapp.com/roomapp/roomstatus.php";
+
+    //JSON IDS:
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_MESSAGE = "message";
+    private static final String TAG_POSTS = "posts";
+    private static final String TAG_STATUS = "status";
+    private static final String TAG_ROOM_ID = "room_id";
+    //An array of all of our comments
+    private JSONArray mRooms = null;
+    //manages all of our comments in a list.
+    private ArrayList<HashMap<String, String>> mRoomList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,11 +72,150 @@ public class mapscreen extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+        //loading the comments via AsyncTask
+        new LoadRooms().execute();
+    }
 
-    public void onMapscreen(View view) {
-        Intent getMapScreenIntent = new Intent (this, mapscreen.class);
 
-        startActivity(getMapScreenIntent);
+    /**
+     * Retrieves json data of comments
+     */
+    public void updateJSONdata() {
+// Instantiate the arraylist to contain all the JSON data.
+        // we are going to use a bunch of key-value pairs, referring
+        // to the json element name, and the content, for example,
+        // message it the tag, and "I'm awesome" as the content..
+
+        mRoomList = new ArrayList<HashMap<String, String>>();
+
+        // Bro, it's time to power up the J parser
+        JSONParser jParser = new JSONParser();
+        // Feed the beast our comments url, and it spits us
+        //back a JSON object.  Boo-yeah Jerome.
+        JSONObject json = jParser.getJSONFromUrl(ROOM_STATUS_URL);
+
+        //when parsing JSON stuff, we should probably
+        //try to catch any exceptions:
+        try {
+
+            //I know I said we would check if "Posts were Avail." (success==1)
+            //before we tried to read the individual posts, but I lied...
+            //mComments will tell us how many "posts" or comments are
+            //available
+            mRooms = json.getJSONArray(TAG_POSTS);
+
+            // looping through all posts according to the json object returned
+            for (int i = 0; i < mRooms.length(); i++) {
+                JSONObject c = mRooms.getJSONObject(i);
+
+                //gets the content of each tag
+                String roomid = c.getString(TAG_ROOM_ID);
+                String status = c.getString(TAG_STATUS);
+
+
+                // creating new HashMap
+                HashMap<String, String> map = new HashMap<String, String>();
+
+                map.put(TAG_ROOM_ID, roomid);
+                map.put(TAG_STATUS, status);
+
+
+                // adding HashList to ArrayList
+                mRoomList.add(map);
+
+                //annndddd, our JSON data is up to date same with our array list
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Inserts the parsed data into our listview
+     */
+    private void updateList() {
+// For a ListActivity we need to set the List Adapter, and in order to do
+        //that, we need to create a ListAdapter.  This SimpleAdapter,
+        //will utilize our updated Hashmapped ArrayList,
+        //use our single_post xml template for each item in our list,
+        //and place the appropriate info from the list to the
+        //correct GUI id.  Order is important here.
+        ArrayList<Button> theRooms = new ArrayList<Button>();
+        theRooms.add((Button) findViewById(R.id.usb));
+        theRooms.add((Button) findViewById(R.id.vax));
+        theRooms.add((Button) findViewById(R.id.pdp));
+        theRooms.add((Button) findViewById(R.id.cray));
+        theRooms.add((Button) findViewById(R.id.donkey));
+        theRooms.add((Button) findViewById(R.id.zelda));
+        theRooms.add((Button) findViewById(R.id.tetris));
+        theRooms.add((Button) findViewById(R.id.dbase));
+        theRooms.add((Button) findViewById(R.id.erna));
+        theRooms.add((Button) findViewById(R.id.kermit));
+
+        for(int i=0; i<mRoomList.size(); i++){
+            if(Integer.parseInt(mRoomList.get(i).get(TAG_STATUS)) == 1) {
+                theRooms.get(Integer.parseInt(mRoomList.get(i).get(TAG_ROOM_ID)) - 1).setBackgroundResource(R.color.red);
+
+            } else {
+                theRooms.get(Integer.parseInt(mRoomList.get(i).get(TAG_ROOM_ID)) - 1).setBackgroundResource(R.color.yellow);
+
+            }
+        }
 
     }
+
+    public class LoadRooms extends AsyncTask<Void, Void, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(mapscreen.this);
+            pDialog.setMessage("Loading rooms...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+        }
+        @Override
+        protected Boolean doInBackground(Void... arg0) {
+            updateJSONdata();
+            return null;
+
+        }
+
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            super.onPostExecute(result);
+            pDialog.dismiss();
+            updateList();
+        }
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
