@@ -2,6 +2,7 @@ package com.example.hukkei.roomapplication;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -35,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
 
     // JSON parser class
     JSONParser jsonParser = new JSONParser();
-
+    SharedPreferences sp;
     //php login script location:
 
     //localhost :
@@ -53,9 +54,11 @@ public class MainActivity extends ActionBarActivity {
     //JSON element ids from repsonse of php script:
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
+    private static final String TAG_USER_ID = "id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sp = this.getSharedPreferences("loginSaved", Context.MODE_PRIVATE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //setup input fields
@@ -151,12 +154,13 @@ public class MainActivity extends ActionBarActivity {
                 // json success tag
                 success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
+                    String userid = json.getString(TAG_USER_ID);
                     Log.d("Login Successful!", json.toString());
                     // save user data
-                    SharedPreferences sp = PreferenceManager
-                            .getDefaultSharedPreferences(MainActivity.this);
+
                     SharedPreferences.Editor edit = sp.edit();
                     edit.putString("username", username);
+                    edit.putString("userid", userid);
                     edit.commit();
                     Intent i = new Intent(MainActivity.this, mainscreen.class);
                     finish();
