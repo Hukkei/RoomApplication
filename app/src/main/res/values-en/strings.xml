@@ -13,4 +13,7 @@
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
     <string name="v_info_text">Important information!</string>
+    <string name="bokning_txt">RESERVATION</string>
+    <string name="avboka_txt">CANCEL</string>
+    <string name="bokhis_txt">RESERVATION HISTORY</string>
 </resources>
