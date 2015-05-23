@@ -160,6 +160,8 @@ public class mapscreen extends ActionBarActivity {
         theRooms.add((Button) findViewById(R.id.dbase));
         theRooms.add((Button) findViewById(R.id.erna));
         theRooms.add((Button) findViewById(R.id.kermit));
+        theRooms.add((Button) findViewById(R.id.switch1));
+        theRooms.add((Button) findViewById(R.id.router));
 
         for(int i=0; i<mRoomList.size(); i++){
             if(Integer.parseInt(mRoomList.get(i).get(TAG_STATUS)) == 1) {
@@ -175,6 +177,62 @@ public class mapscreen extends ActionBarActivity {
 
     }
 
+    public void reservTime(View view) {
+        LoadReservations lr;
+        switch (view.getId()) {
+
+            case (R.id.usb):
+                lr = new LoadReservations("1",getFragmentManager());
+                lr.execute();
+                break;
+            case (R.id.vax):
+                lr = new LoadReservations("2",getFragmentManager());
+                lr.execute();
+                break;
+            case (R.id.pdp):
+                lr = new LoadReservations("3",getFragmentManager());
+                lr.execute();
+                break;
+            case (R.id.cray):
+                lr = new LoadReservations("4",getFragmentManager());
+                lr.execute();
+                break;
+            case (R.id.donkey):
+                lr = new LoadReservations("5",getFragmentManager());
+                lr.execute();
+                break;
+            case (R.id.zelda):
+                lr = new LoadReservations("6",getFragmentManager());
+                lr.execute();
+                break;
+            case (R.id.tetris):
+                lr = new LoadReservations("7",getFragmentManager());
+                lr.execute();
+                break;
+            case (R.id.dbase):
+                lr = new LoadReservations("8",getFragmentManager());
+                lr.execute();
+                break;
+            case (R.id.erna):
+                lr = new LoadReservations("9",getFragmentManager());
+                lr.execute();
+                break;
+            case (R.id.kermit):
+                lr = new LoadReservations("10",getFragmentManager());
+                lr.execute();
+                break;
+            case (R.id.switch1):
+                lr = new LoadReservations("11",getFragmentManager());
+                lr.execute();
+                break;
+            case (R.id.router):
+                lr = new LoadReservations("12",getFragmentManager());
+                lr.execute();
+                break;
+
+
+        }
+    }
     public class LoadRooms extends AsyncTask<Void, Void, Boolean> {
 
         @Override

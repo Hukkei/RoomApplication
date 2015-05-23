@@ -12,7 +12,9 @@
         android:layout_alignBottom="@+id/torgOrange"
         android:layout_toRightOf="@+id/torgOrange"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="reservTime"
+        />
 
     <Button
         android:layout_width="85dp"
@@ -24,7 +26,9 @@
         android:layout_above="@+id/kermit"
         android:layout_toRightOf="@+id/torgOrange"
         android:layout_alignRight="@+id/kermit"
-        android:layout_alignEnd="@+id/kermit" />
+        android:layout_alignEnd="@+id/kermit"
+        android:onClick="reservTime"
+        />
 
     <Button
         android:layout_width="85dp"
@@ -36,7 +40,8 @@
         android:layout_above="@+id/erna"
         android:layout_toRightOf="@+id/torgOrange"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="reservTime"/>
 
     <Button
         android:layout_width="85dp"
@@ -47,7 +52,8 @@
         android:layout_alignBottom="@+id/torgGreen"
         android:layout_toRightOf="@+id/torgGreen"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="reservTime"/>
 
     <Button
         android:layout_width="85dp"
@@ -59,7 +65,8 @@
         android:layout_above="@+id/cray"
         android:layout_toRightOf="@+id/torgGreen"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="reservTime"/>
 
     <Button
         android:layout_width="85dp"
@@ -71,7 +78,8 @@
         android:layout_above="@+id/pdp"
         android:layout_toRightOf="@+id/torgGreen"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="reservTime"/>
 
     <Button
 
@@ -84,7 +92,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_toLeftOf="@+id/matsal"
-        android:layout_toStartOf="@+id/matsal" />
+        android:layout_toStartOf="@+id/matsal"
+        android:onClick="reservTime"/>
 
     <Button
         android:layout_width="85dp"
@@ -97,7 +106,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/tetris"
-        android:layout_alignEnd="@+id/tetris" />
+        android:layout_alignEnd="@+id/tetris"
+        android:onClick="reservTime"/>
 
     <Button
         android:layout_width="50dp"
@@ -110,19 +120,20 @@
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/donkey"
         android:layout_alignEnd="@+id/donkey"
-        android:layout_alignBottom="@+id/erna" />
+        android:layout_alignBottom="@+id/erna"
+        android:onClick="reservTime"/>
 
     <Button
         android:layout_width="85dp"
         android:layout_height="50dp"
-        android:text="DONKEY
-KONG"
+        android:text="DONKEYKONG"
         android:textSize="14sp"
         android:id="@+id/donkey"
         android:background="@drawable/button_white"
         android:layout_above="@+id/tetris"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="reservTime"/>
 
     <Button
         android:layout_width="20dp"
@@ -133,7 +144,8 @@ KONG"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/zelda"
         android:layout_toEndOf="@+id/zelda"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="24dp"
+        />
 
 
     <Button
@@ -143,7 +155,8 @@ KONG"
         android:background="@drawable/custom_button"
         android:layout_alignBottom="@+id/editText3"
         android:layout_alignTop="@+id/editText3"
-        android:layout_toRightOf="@+id/torgBlue" />
+        android:layout_toRightOf="@+id/torgBlue"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -154,7 +167,8 @@ KONG"
         android:layout_toRightOf="@+id/zelda"
         android:layout_toEndOf="@+id/zelda"
         android:layout_marginLeft="27dp"
-        android:layout_marginStart="27dp" />
+        android:layout_marginStart="27dp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -202,7 +216,8 @@ KONG"
         android:layout_alignBottom="@+id/switch1"
         android:layout_toLeftOf="@+id/pdp"
         android:layout_toStartOf="@+id/pdp"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:onClick="reservTime"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -214,7 +229,8 @@ KONG"
 
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/router"
-        android:layout_toStartOf="@+id/router" />
+        android:layout_toStartOf="@+id/router"
+        android:onClick="reservTime"/>
 
     <Button
         android:layout_width="100dp"
