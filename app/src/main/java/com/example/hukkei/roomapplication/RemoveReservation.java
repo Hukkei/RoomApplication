@@ -18,7 +18,7 @@ import java.util.List;
 
     class RemoveReservation extends AsyncTask<String, String, String> {
 
-        //testing from a real server:
+        //php url
         private static final String REMOVE_URL = "http://roomappgu.bitnamiapp.com/roomapp/removereservation.php";
 
         //JSON element ids from repsonse of php script:
@@ -65,11 +65,11 @@ import java.util.List;
 
 
                 Log.d("request!", "starting");
-                // getting product details by making HTTP request
+                // make http request
                 JSONObject json = jsonParser.makeHttpRequest(
                         REMOVE_URL, "POST", params);
 
-                // check your log for json response
+
                 Log.d("removal attempt", json.toString());
 
                 // json success tag
@@ -95,7 +95,7 @@ import java.util.List;
          * After completing background task Dismiss the progress dialog
          * **/
         protected void onPostExecute(String file_url) {
-            // dismiss the dialog once product deleted
+
             pDialog.dismiss();
             if (file_url != null){
                 Toast.makeText(c, file_url, Toast.LENGTH_LONG).show();

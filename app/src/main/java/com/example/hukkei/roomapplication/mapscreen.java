@@ -36,7 +36,7 @@ public class mapscreen extends ActionBarActivity {
 
 
     private ProgressDialog pDialog;
-    //testing from a real server:
+    //php url
     private static final String ROOM_STATUS_URL = "http://roomappgu.bitnamiapp.com/roomapp/roomstatus.php";
 
     //JSON IDS:
@@ -48,9 +48,9 @@ public class mapscreen extends ActionBarActivity {
     private static final String TAG_END_TIME = "end_time";
     private static final String TAG_ID_USERS = "id_user";
     private static final String TAG_ID_ROOM = "id_room";
-    //An array of all of our comments
+    //An array with all room data
     private JSONArray mRooms = null;
-    //manages all of our comments in a list.
+    //arraylist with hashmap containing all data receieved
     private ArrayList<HashMap<String, String>> mRoomList;
 
     @Override
@@ -89,7 +89,7 @@ public class mapscreen extends ActionBarActivity {
     protected void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
-        //loading the comments via AsyncTask
+        //start async task for loading rooms
         new LoadRooms().execute();
     }
 
@@ -98,27 +98,18 @@ public class mapscreen extends ActionBarActivity {
      * Retrieves json data of comments
      */
     public void updateJSONdata() {
-// Instantiate the arraylist to contain all the JSON data.
-        // we are going to use a bunch of key-value pairs, referring
-        // to the json element name, and the content, for example,
-        // message it the tag, and "I'm awesome" as the content..
-
+        // Instantiate the arraylist to contain all the JSON data.
         mRoomList = new ArrayList<HashMap<String, String>>();
-
         // Bro, it's time to power up the J parser
         JSONParser jParser = new JSONParser();
         // Feed the beast our comments url, and it spits us
-        //back a JSON object.  Boo-yeah Jerome.
+        //back a JSON object.
         JSONObject json = jParser.getJSONFromUrl(ROOM_STATUS_URL);
 
-        //when parsing JSON stuff, we should probably
-        //try to catch any exceptions:
+
         try {
 
-            //I know I said we would check if "Posts were Avail." (success==1)
-            //before we tried to read the individual posts, but I lied...
-            //mComments will tell us how many "posts" or comments are
-            //available
+
             mRooms = json.getJSONArray(TAG_POSTS);
 
             // looping through all posts according to the json object returned
@@ -155,17 +146,10 @@ public class mapscreen extends ActionBarActivity {
         }
     }
 
-    /**
-     * Inserts the parsed data into our listview
-     */
+
     private void updateList() {
-// For a ListActivity we need to set the List Adapter, and in order to do
-        //that, we need to create a ListAdapter.  This SimpleAdapter,
-        //will utilize our updated Hashmapped ArrayList,
-        //use our single_post xml template for each item in our list,
-        //and place the appropriate info from the list to the
-        //correct GUI id.  Order is important here.
-        ArrayList<Button> theRooms = new ArrayList<Button>();
+        //method for changing the color of rooms based on if a reservation is currently active.
+        ArrayList<Button> theRooms = new ArrayList<Button>(); //Arraylist for every button
         theRooms.add((Button) findViewById(R.id.usb));
         theRooms.add((Button) findViewById(R.id.vax));
         theRooms.add((Button) findViewById(R.id.pdp));
@@ -186,14 +170,15 @@ public class mapscreen extends ActionBarActivity {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     Date date = new Date();
                     try{
-                        Date startdate = sdf.parse(mRoomList.get(j).get(TAG_START_TIME));
+                        Date startdate = sdf.parse(mRoomList.get(j).get(TAG_START_TIME)); //first date
                         Calendar cal = GregorianCalendar.getInstance();
                         cal.setTime(startdate);
+                        //we add 59 minutes and 59 seconds to startdate in order to create an appropriate timespan
                         cal.add(Calendar.MINUTE, 59);
                         cal.add(Calendar.SECOND, 59);
-                        Date enddate = cal.getTime();
+                        Date enddate = cal.getTime(); //second date
                         Log.d("time:", startdate.toString() +"-----" + enddate.toString() + "roomid:" + mRoomList.get(j).get(TAG_ID_ROOM));
-                        if(startdate.compareTo(date) * date.compareTo(enddate) > 0 ){
+                        if(startdate.compareTo(date) * date.compareTo(enddate) > 0 ){ //see if todays date/time is between startdate and enddate
                             theRooms.get(i).setBackgroundResource(R.drawable.button_blue);
                             theRooms.get(i).setTextColor(getResources().getColor(R.color.white));
                             break;
@@ -219,6 +204,7 @@ public class mapscreen extends ActionBarActivity {
 
     public void reservTime(View view) {
         LoadReservations lr;
+        //creates an instance of LoadReservations with the room id as a parameter. then executes async task
         switch (view.getId()) {
 
             case (R.id.usb):

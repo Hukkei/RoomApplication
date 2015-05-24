@@ -34,7 +34,7 @@ public class alertDialog extends DialogFragment {
 
     ArrayList mSelectedItems;
 
-    Context pappaContext;
+    Context pappaContext; //context of the of the activity in which this fragment resides.
     String currentRoom;
     ArrayList<CharSequence> twentyfourtimes = new ArrayList<CharSequence>();
     @Override
@@ -44,17 +44,15 @@ public class alertDialog extends DialogFragment {
         final ArrayList<Integer> mSelectedItems = new ArrayList<Integer>();  // Where we track the selected items
         final SharedPreferences sp = pappaContext.getSharedPreferences("loginSaved", Context.MODE_PRIVATE);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        //add times to array
 
 
 
 
-        //builder.setAdapter(new MyAdapter(twentyfourtimes, mSelectedItems), null);
+
+
 
         // Set the dialog title
         builder.setTitle("Pick time")
-                // Specify the list array, the items to be selected by default (null for none),
-                // and the listener through which to receive callbacks when items are selected
                 .setMultiChoiceItems(twentyfourtimes.toArray(new CharSequence[twentyfourtimes.size()]), null,
                         new DialogInterface.OnMultiChoiceClickListener() {
 
@@ -83,7 +81,8 @@ public class alertDialog extends DialogFragment {
 
 
                         for(int i=0; i < mSelectedItems.size(); i++){
-
+                            //we call the asynctask AddReservation to add the reservation to the database.
+                            //we provide it with userid gotten from sharedprefernces, time and room.
                             String selectedtime = twentyfourtimes.get(mSelectedItems.get(i)).toString();
                             AddReservation addit = new AddReservation(pappaContext,selectedtime,sp.getString("userid", null),currentRoom);
                             addit.execute();

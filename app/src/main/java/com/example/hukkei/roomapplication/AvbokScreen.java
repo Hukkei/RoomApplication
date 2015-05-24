@@ -45,10 +45,12 @@ public class AvbokScreen extends Activity implements AdapterView.OnItemClickList
         setContentView(R.layout.avbokscreen);
         lv = (ListView) findViewById(R.id.listview1);
         sp = this.getSharedPreferences("loginSaved", Context.MODE_PRIVATE);
+        //we create a LoadReserv object, and give the context, a listview and sharedprefernces as parameters.
         lr = new LoadReservs(this, lv, sp);
+        //execute LoadReserv async task, this puts items in a listview, one string for each reservation that the logged in user has that has not yet ended.
         lr.execute();
 
-        //Log.d("detfunkaryo", idPositions.get(0));
+
 
 
 
@@ -68,7 +70,8 @@ public class AvbokScreen extends Activity implements AdapterView.OnItemClickList
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         TextView tv = (TextView) view;
 
-        String[] resID = tv.getText().toString().split("ID:");
+        String[] resID = tv.getText().toString().split("ID:"); //get the last part of the string, which contains the id of the reservation.
+        //remove reservation on id
         RemoveReservation rr = new RemoveReservation(parent.getContext(),resID[1]);
         rr.execute();
 

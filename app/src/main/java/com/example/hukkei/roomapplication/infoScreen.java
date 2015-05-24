@@ -41,10 +41,5 @@ public class infoScreen extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void meddelanderuta_btn(View view) {
-        alertDialog aDialog = new alertDialog();
-        aDialog.show(getFragmentManager(), "alert Dialog");
 
-
-    }
 }

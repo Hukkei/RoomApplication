@@ -52,27 +52,18 @@ public class LoadReservs extends AsyncTask<Void, Void, Boolean> {
         this.sp = sp;
     }
     public void updateJSONdata() {
-// Instantiate the arraylist to contain all the JSON data.
-        // we are going to use a bunch of key-value pairs, referring
-        // to the json element name, and the content, for example,
-        // message it the tag, and "I'm awesome" as the content..
 
         mReservList = new ArrayList<HashMap<String, String>>();
 
-        // Bro, it's time to power up the J parser
+
         JSONParser jParser = new JSONParser();
-        // Feed the beast our comments url, and it spits us
-        //back a JSON object.  Boo-yeah Jerome.
+
         JSONObject json = jParser.getJSONFromUrl(ROOM_STATUS_URL);
 
-        //when parsing JSON stuff, we should probably
-        //try to catch any exceptions:
+
         try {
 
-            //I know I said we would check if "Posts were Avail." (success==1)
-            //before we tried to read the individual posts, but I lied...
-            //mComments will tell us how many "posts" or comments are
-            //available
+
             mReservations = json.getJSONArray(TAG_POSTS);
 
             // looping through all posts according to the json object returned
@@ -115,6 +106,7 @@ public class LoadReservs extends AsyncTask<Void, Void, Boolean> {
     }
 
     public void createUsefulList(){
+        //method creates a list containing strings for each reservation found on the user. these strings will be used to fill the listview.
         ArrayList<String> roomNames = new ArrayList<String>(); //so  that we can give roomids string names in GUI
         roomNames.add("USB");
         roomNames.add("VAX");
@@ -178,10 +170,10 @@ public class LoadReservs extends AsyncTask<Void, Void, Boolean> {
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
         //pDialog.dismiss();
-        arad = new ArrayAdapter<String>(c,android.R.layout.simple_list_item_1, userReservations);
+        arad = new ArrayAdapter<String>(c,android.R.layout.simple_list_item_1, userReservations); //adapter for listview
         lv.setAdapter(arad);
         AvbokScreen avb = new AvbokScreen();
-        avb.setListener(lv);
+        avb.setListener(lv); //setlistner for the list.
 
 
 

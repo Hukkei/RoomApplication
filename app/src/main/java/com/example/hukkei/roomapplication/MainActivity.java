@@ -37,18 +37,11 @@ public class MainActivity extends ActionBarActivity {
     // JSON parser class
     JSONParser jsonParser = new JSONParser();
     SharedPreferences sp;
+
+
+
+
     //php login script location:
-
-    //localhost :
-    //testing on your device
-    //put your local ip instead,  on windows, run CMD > ipconfig
-    //or in mac's terminal type ifconfig and look for the ip under en0 or en1
-    // private static final String LOGIN_URL = "http://xxx.xxx.x.x:1234/roomapp/login.php";
-
-    //testing on Emulator:
-    //private static final String LOGIN_URL = "http://10.0.2.2:80/roomapp/login.php";
-
-    //testing from a real server:
     private static final String LOGIN_URL = "http://roomappgu.bitnamiapp.com/roomapp/login.php";
 
     //JSON element ids from repsonse of php script:
@@ -89,7 +82,7 @@ public class MainActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
 
-        }else if (id == R.id.avslutaApp){ //avsluta appen
+        }else if (id == R.id.avslutaApp){
             finish();
             return true;
         }
@@ -98,7 +91,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onLoggaIn(View view) {
-        new AttemptLogin().execute();
+        new AttemptLogin().execute(); //executes async task for login
 
 
 
@@ -137,33 +130,34 @@ public class MainActivity extends ActionBarActivity {
             String username = user.getText().toString();
             String password = pass.getText().toString();
             try {
-                // Building Parameters
+                //create params
 
                 List<NameValuePair> params = new ArrayList<>();
                 params.add(new BasicNameValuePair("username", username));
                 params.add(new BasicNameValuePair("password", password));
 
                 Log.d("request!", "starting");
-                // getting product details by making HTTP request
+                // do http request based on parameters
                 JSONObject json = jsonParser.makeHttpRequest(
                         LOGIN_URL, "POST", params);
 
-                // check your log for json response
+
                 Log.d("Login attempt", json.toString());
 
                 // json success tag
                 success = json.getInt(TAG_SUCCESS);
+
                 if (success == 1) {
                     String userid = json.getString(TAG_USER_ID);
                     Log.d("Login Successful!", json.toString());
                     // save user data
-
                     SharedPreferences.Editor edit = sp.edit();
                     edit.putString("username", username);
                     edit.putString("userid", userid);
                     edit.commit();
                     Intent i = new Intent(MainActivity.this, mainscreen.class);
                     finish();
+                    //Start activity:mainscreen
                     startActivity(i);
                     return json.getString(TAG_MESSAGE);
                 }else{
@@ -182,7 +176,7 @@ public class MainActivity extends ActionBarActivity {
          * After completing background task Dismiss the progress dialog
          * **/
         protected void onPostExecute(String file_url) {
-            // dismiss the dialog once product deleted
+            // dismiss the dialog
             pDialog.dismiss();
             if (file_url != null){
                 Toast.makeText(MainActivity.this, file_url, Toast.LENGTH_LONG).show();

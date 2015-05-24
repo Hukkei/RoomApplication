@@ -41,17 +41,7 @@ import android.widget.Toast;
         private ProgressDialog pDialog;
         // JSON parser class
         JSONParser jsonParser = new JSONParser();
-        //php login script
-        //localhost :
-        //testing on your device
-        //put your local ip instead,  on windows, run CMD > ipconfig
-        //or in mac's terminal type ifconfig and look for the ip under en0 or en1
-        // private static final String POST_COMMENT_URL = "http://xxx.xxx.x.x:1234/webservice/addcomment.php";
 
-        //testing on Emulator:
-        //private static final String POST_COMMENT_URL = "http://10.0.2.2:80/webservice/addcomment.php";
-
-        //testing from a real server:
         private static final String POST_COMMENT_URL = "http://roomappgu.bitnamiapp.com/roomapp/addreservation.php";
         //ids
         private static final String TAG_SUCCESS = "success";
@@ -84,7 +74,7 @@ import android.widget.Toast;
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd ");
             Date date = new Date();
             String startingtime = df.format(date) + thedate;
-
+            //we create a second date that is 1hour after the initial date, this will be the enddate in the database.
             String reservation_starttime = startingtime ;
             String endtimestring= "mistakes were made";
             try {
@@ -114,7 +104,7 @@ import android.widget.Toast;
 
                 Log.d("request!", "starting");
 
-                //Posting user data to script
+                //make httprequest with parameters
                 JSONObject json = jsonParser.makeHttpRequest(
                         POST_COMMENT_URL, "POST", params);
 

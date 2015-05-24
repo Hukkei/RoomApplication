@@ -21,6 +21,7 @@ import java.util.List;
  * Created by hukkei on 5/23/2015.
  */
 public class LoadReservations extends AsyncTask<Void, Void, Boolean> {
+    //phpurl
     private static final String ROOM_STATUS_URL = "http://roomappgu.bitnamiapp.com/roomapp/findroombydate.php";
 
     //JSON IDS:
@@ -33,13 +34,13 @@ public class LoadReservations extends AsyncTask<Void, Void, Boolean> {
     private static final String TAG_ID_ROOM = "id_room";
     private static final String TAG_RESERVATIONS = "reservations";
 
-    //An array of all of our comments
+    //jsonarray for reservations
     private JSONArray mReservations = null;
-    //manages all of our comments in a list.
+    //array for reservations
     private ArrayList<HashMap<String, String>> mReservationList;
-    private String currentRoom;
+    private String currentRoom; //saves value of which room was clicked
     private FragmentManager fm;
-    final ArrayList<CharSequence> twentyfourtimes = new ArrayList<CharSequence>();
+    final ArrayList<CharSequence> twentyfourtimes = new ArrayList<CharSequence>();//Array that contains strings for each our in a day e.g. 01:00:00 or 14:00:00, these will be displayed in alertdialog
     public LoadReservations(String currentRoom, FragmentManager fm){
         this.currentRoom = currentRoom;
         this.fm = fm;
@@ -53,7 +54,7 @@ public class LoadReservations extends AsyncTask<Void, Void, Boolean> {
     protected Boolean doInBackground(Void... arg0) {
         updateJSONdata();
         fixTimeList();
-        Log.d("fel på koden eller", twentyfourtimes.get(0).toString());
+        Log.d("check", twentyfourtimes.get(0).toString());
         return null;
 
     }
@@ -68,34 +69,28 @@ public class LoadReservations extends AsyncTask<Void, Void, Boolean> {
 
 
     public void updateJSONdata() {
-        // Instantiate the arraylist to contain all the JSON data.
-        // we are going to use a bunch of key-value pairs, referring
-        // to the json element name, and the content, for example,
-        // message it the tag, and "I'm awesome" as the content..
 
+        //instansiate the list
         mReservationList = new ArrayList<HashMap<String, String>>();
 
         // Bro, it's time to power up the J parser
         JSONParser jParser = new JSONParser();
-        // Feed the beast our comments url, and it spits us
+
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd ");
         Date date = new Date();
         String today = dateFormat.format(date);
+        //now we create a list that contains the the id of the room we are opening, the a date for today at 00:00:00 and a date for today at 23:59:59
         List<NameValuePair> params = new ArrayList<>();
         params.add(new BasicNameValuePair("the_day1", today+"00:00:00"));
         params.add(new BasicNameValuePair("the_day2", today+"23:59:59"));
         params.add(new BasicNameValuePair("the_room", currentRoom));
-        //back a JSON object.  Boo-yeah Jerome.
+        //make httprequest with given params.
         JSONObject json = jParser.makeHttpRequest(ROOM_STATUS_URL, "POST", params);
 
-        //when parsing JSON stuff, we should probably
-        //try to catch any exceptions:
+
         try {
 
-            //I know I said we would check if "Posts were Avail." (success==1)
-            //before we tried to read the individual posts, but I lied...
-            //mComments will tell us how many "posts" or comments are
-            //available
+
             mReservations = json.getJSONArray(TAG_RESERVATIONS);
 
             // looping through all posts according to the json object returned
@@ -144,6 +139,7 @@ public class LoadReservations extends AsyncTask<Void, Void, Boolean> {
     }
 
     public void fixTimeList(){
+        //add times to arraylist
         twentyfourtimes.add("00:00:00");
         twentyfourtimes.add("01:00:00");
         twentyfourtimes.add("02:00:00");
@@ -169,8 +165,10 @@ public class LoadReservations extends AsyncTask<Void, Void, Boolean> {
         twentyfourtimes.add("22:00:00");
         twentyfourtimes.add("23:00:00");
         for(int i=0; i<mReservationList.size(); i++){
+            //since the value we get for starttime from the database is a full datetime string like 2000-05-04 22:20:10,
+            // and we only want to get the time, we will split the string at blankspace.
             String[] justhours = mReservationList.get(i).get(TAG_START_TIME).split(" "); //split date string at blankspace so we get HH:mm:ss
-            for(int j=0; j<twentyfourtimes.size();j++){
+            for(int j=0; j<twentyfourtimes.size();j++){ //here we remove all occurences of a specific time in our twentyfourtimes list. this list will be displayed in alertdialog
                 if(justhours[1].equals(twentyfourtimes.get(j))){
                     twentyfourtimes.remove(j);
                 }
