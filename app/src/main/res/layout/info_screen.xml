@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Detta e ett meddelande, detta ska visas i en dialogruta"
+        android:text="Denna app är skapad av projektgruppen Lost Abbey som består av: Anes, Elin, Daniel, Simon och Stina"
         android:id="@+id/textView5"
         android:layout_below="@+id/textView6"
         android:layout_alignParentRight="true"
