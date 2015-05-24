@@ -126,7 +126,7 @@
     <Button
         android:layout_width="85dp"
         android:layout_height="50dp"
-        android:text="DONKEYKONG"
+        android:text="DONKEY KONG"
         android:textSize="14sp"
         android:id="@+id/donkey"
         android:background="@drawable/button_white"
@@ -250,6 +250,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/refresh"
+        android:background="@color/white"
         android:onClick="refreshRooms"/>
 
 
