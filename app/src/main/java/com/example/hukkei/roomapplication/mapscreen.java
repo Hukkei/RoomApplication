@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +17,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 /**
@@ -37,8 +43,11 @@ public class mapscreen extends ActionBarActivity {
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     private static final String TAG_POSTS = "posts";
-    private static final String TAG_STATUS = "status";
-    private static final String TAG_ROOM_ID = "room_id";
+    private static final String TAG_RESERV_ID = "reserv_id";
+    private static final String TAG_START_TIME = "start_time";
+    private static final String TAG_END_TIME = "end_time";
+    private static final String TAG_ID_USERS = "id_user";
+    private static final String TAG_ID_ROOM = "id_room";
     //An array of all of our comments
     private JSONArray mRooms = null;
     //manages all of our comments in a list.
@@ -117,15 +126,22 @@ public class mapscreen extends ActionBarActivity {
                 JSONObject c = mRooms.getJSONObject(i);
 
                 //gets the content of each tag
-                String roomid = c.getString(TAG_ROOM_ID);
-                String status = c.getString(TAG_STATUS);
+                String reservid = c.getString(TAG_RESERV_ID);
+                String starttime = c.getString(TAG_START_TIME);
+                String endtime = c.getString(TAG_END_TIME);
+                String idusers = c.getString(TAG_ID_USERS);
+                String idroom = c.getString(TAG_ID_ROOM);
+
 
 
                 // creating new HashMap
                 HashMap<String, String> map = new HashMap<String, String>();
 
-                map.put(TAG_ROOM_ID, roomid);
-                map.put(TAG_STATUS, status);
+                map.put(TAG_RESERV_ID, reservid);
+                map.put(TAG_START_TIME, starttime);
+                map.put(TAG_END_TIME, endtime);
+                map.put(TAG_ID_USERS, idusers);
+                map.put(TAG_ID_ROOM, idroom);
 
 
                 // adding HashList to ArrayList
@@ -163,17 +179,41 @@ public class mapscreen extends ActionBarActivity {
         theRooms.add((Button) findViewById(R.id.switch1));
         theRooms.add((Button) findViewById(R.id.router));
 
-        for(int i=0; i<mRoomList.size(); i++){
-            if(Integer.parseInt(mRoomList.get(i).get(TAG_STATUS)) == 1) {
-                theRooms.get(Integer.parseInt(mRoomList.get(i).get(TAG_ROOM_ID)) - 1).setBackgroundResource(R.drawable.button_blue);
-                theRooms.get(Integer.parseInt(mRoomList.get(i).get(TAG_ROOM_ID)) - 1).setTextColor(getResources().getColor(R.color.white));
+        for(int i=0; i<theRooms.size(); i++){ //check if todays date and time occurs in any reservation and changes button color if it does
+            for(int j=0; j<mRoomList.size(); j++){
+                if(Integer.parseInt(mRoomList.get(j).get(TAG_ID_ROOM))== i + 1){
 
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    Date date = new Date();
+                    try{
+                        Date startdate = sdf.parse(mRoomList.get(j).get(TAG_START_TIME));
+                        Calendar cal = GregorianCalendar.getInstance();
+                        cal.setTime(startdate);
+                        cal.add(Calendar.MINUTE, 59);
+                        cal.add(Calendar.SECOND, 59);
+                        Date enddate = cal.getTime();
+                        Log.d("time:", startdate.toString() +"-----" + enddate.toString() + "roomid:" + mRoomList.get(j).get(TAG_ID_ROOM));
+                        if(startdate.compareTo(date) * date.compareTo(enddate) > 0 ){
+                            theRooms.get(i).setBackgroundResource(R.drawable.button_blue);
+                            theRooms.get(i).setTextColor(getResources().getColor(R.color.white));
+                            break;
+                        } else {
+                            theRooms.get(i).setBackgroundResource(R.drawable.button_white);
+                            theRooms.get(i).setTextColor(getResources().getColor(R.color.black));
+                        }
+                    } catch(ParseException pe){
+                        pe.printStackTrace();
+                    }
 
-            } else {
-                theRooms.get(Integer.parseInt(mRoomList.get(i).get(TAG_ROOM_ID)) - 1).setBackgroundResource(R.drawable.button_white);
-                theRooms.get(Integer.parseInt(mRoomList.get(i).get(TAG_ROOM_ID)) - 1).setTextColor(getResources().getColor(R.color.black));
+                }
             }
         }
+
+
+
+
+
+
 
     }
 
@@ -232,6 +272,10 @@ public class mapscreen extends ActionBarActivity {
 
 
         }
+    }
+
+    public void refreshRooms(View v){
+        new LoadRooms().execute();
     }
     public class LoadRooms extends AsyncTask<Void, Void, Boolean> {
 

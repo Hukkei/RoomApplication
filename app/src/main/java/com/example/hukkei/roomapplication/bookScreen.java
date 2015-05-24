@@ -55,5 +55,10 @@ public class bookScreen extends ActionBarActivity {
         startActivity(getMapScreenIntent);
 
     }
+    public void avbokNow(View view) {
+        startActivity(new Intent(this, AvbokScreen.class));
+
+    }
+
 
 }

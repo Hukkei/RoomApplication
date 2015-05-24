@@ -241,5 +241,16 @@
         android:layout_toEndOf="@+id/donkey"
         android:layout_toRightOf="@+id/donkey" />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/refreshbutton"
+        android:layout_alignBottom="@+id/router"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/refresh"
+        android:onClick="refreshRooms"/>
+
 
 </RelativeLayout>

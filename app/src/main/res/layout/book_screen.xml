@@ -33,7 +33,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="0dp"
         android:background="@drawable/avboka_btn"
-        android:onClick="bokaSida"
+        android:onClick="avbokNow"
 
         />
 
