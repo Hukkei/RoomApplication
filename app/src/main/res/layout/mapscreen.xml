@@ -250,7 +250,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/refresh"
-        android:background="@color/white"
         android:onClick="refreshRooms"/>
 
 
